@@ -8,12 +8,39 @@
 
 import Foundation
 
-let op: String = "+-*/%"
+let op: String = "+-x/%"
 
+func inputValidation (arguments: Array<String>){
+    
+    if Int(arguments[0]) != nil && arguments.count == 1 {
+        print(arguments[0])
+        exit(0)
+    }
+    for i in 1...arguments.count - 1 {
+        let current = arguments[i-1]
+        let next = arguments[i]
+        let last = arguments[arguments.count-1]
+       
+        if Int(current) != nil && Int(next) != nil {
+            print("Invalid input")
+            exit(1)
+        }
+        if op.contains(last) {
+            print("Invalid input")
+            exit(1)
+        }
+        if Int(current) == nil && !op.contains(current) || !op.contains(next) && Int(next) == nil {//If not integer and not a valid operation
+            print("Invalid input")
+            exit(1)
+        }
+        
+       
+    }
+}
 
 func getOperators(arguments: Array<String>) -> Array<String> {
     var operators = [String]()
-    //let op: String = "+-*/%"
+    
     for i in 0...arguments.count-1 {
         if op.contains(arguments[i]) {
             operators.append(arguments[i])
@@ -40,15 +67,22 @@ func multdiv(arguments: Array<String>) -> Array<String> {
     var newInt: Int = 0
     
     for i in 0...arguments.count-1 {
-        if arguments[i].elementsEqual("x") || arguments[i].elementsEqual("/") {
+        if arguments[i].elementsEqual("x") || arguments[i].elementsEqual("/") || arguments[i].elementsEqual("%"){
             
             if arguments[i].elementsEqual("x") {
                 newInt = Int(arguments[i-1])! * Int(arguments[i+1])!
             }
             if arguments[i].elementsEqual("/") {
+                if Int(arguments[i+1]) == 0{
+                    print("Error: Cannot divide by zero")
+                    exit(1)
+                }
+                
                 newInt = Int(arguments[i-1])! / Int(arguments[i+1])!
             }
-            
+            if arguments[i].elementsEqual("%") {
+                newInt = Int(arguments[i-1])! % Int(arguments[i+1])!
+            }
             newExpression.remove(at: i-1)
             newExpression.remove(at: i-1)
             newExpression.remove(at: i-1)
@@ -95,5 +129,6 @@ args.removeFirst() // remove the name of the program
 
 //print(op)
 //print(inte)
+inputValidation(arguments: args)
 var result = calculate(arguments: args)
 print(result)
