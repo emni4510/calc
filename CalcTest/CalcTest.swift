@@ -81,8 +81,7 @@ class calcProcess {
             status = calcError.exitStatus(task.terminationStatus)
         }
     }
-}
-
+} 
 class CalcTest: XCTestCase {
     func testParseInteger() {
         let n1 = randomSource.nextInt(upperBound:100)

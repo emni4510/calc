@@ -13,6 +13,11 @@ let op: String = "+-x/%"
 func inputValidation (arguments: Array<String>){
     
     if Int(arguments[0]) != nil && arguments.count == 1 {
+        if arguments[0].contains("+") {
+            let new = arguments[0].replacingOccurrences(of: "+", with: "")
+            print(new)
+            exit(0)
+        }
         print(arguments[0])
         exit(0)
     }
@@ -123,12 +128,20 @@ func calculate(arguments: Array<String>) -> Int {
 
 var args = ProcessInfo.processInfo.arguments
 args.removeFirst() // remove the name of the program
-//var op = getOperators(arguments: args)
-//var inte = getIntegers(arguments: args)
-//print(Int(args[0])!)
 
-//print(op)
-//print(inte)
+
 inputValidation(arguments: args)
 var result = calculate(arguments: args)
 print(result)
+
+//TODO
+//exceptions
+//make sure consistens
+//comments
+//good naming
+// enter types
+// Classes
+// loose coupling
+//main do functions understand without looking at them
+//var as: [String] = []
+//kontrollera tester tex outofbounds
