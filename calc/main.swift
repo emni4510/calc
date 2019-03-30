@@ -130,9 +130,17 @@ var args = ProcessInfo.processInfo.arguments
 args.removeFirst() // remove the name of the program
 
 
-inputValidation(arguments: args)
-var result = calculate(arguments: args)
-print(result)
+//inputValidation(arguments: args)
+
+var validate : Validations = Validations()
+if validate.isValid(arguments: args) {
+    let result = calculate(arguments: args)
+    print(result)
+}
+else {
+    print("Unvalid input")
+    exit(1)
+}
 
 //TODO
 //exceptions
