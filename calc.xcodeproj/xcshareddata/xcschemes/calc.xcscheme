@@ -89,10 +89,6 @@
             argument = "234"
             isEnabled = "YES">
          </CommandLineArgument>
-         <CommandLineArgument
-            argument = "23"
-            isEnabled = "YES">
-         </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
